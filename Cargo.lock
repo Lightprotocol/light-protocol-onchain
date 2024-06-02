@@ -1907,6 +1907,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0206175f82b8d6bf6652ff7d71a1e27fd2e4efde587fd368662814d6ec1d9ce0"
 
 [[package]]
+name = "example-name-service"
+version = "0.1.0"
+dependencies = [
+ "account-compression",
+ "anchor-lang",
+ "light-hasher",
+ "light-system-program",
+ "light-verifier",
+ "solana-sdk",
+]
+
+[[package]]
 name = "eyre"
 version = "0.6.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2926,6 +2938,7 @@ dependencies = [
  "anchor-lang",
  "anchor-spl",
  "bs58 0.4.0",
+ "light-traits",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
@@ -3034,6 +3047,26 @@ dependencies = [
  "spl-token 3.5.0",
  "thiserror",
  "tokio",
+]
+
+[[package]]
+name = "light-trait-macro"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "bs58 0.4.0",
+ "light-traits",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "light-traits"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
 ]
 
 [[package]]
@@ -7148,8 +7181,11 @@ dependencies = [
  "light-circuitlib-rs",
  "light-compressed-token",
  "light-hasher",
+ "light-macros",
  "light-system-program",
  "light-test-utils",
+ "light-trait-macro",
+ "light-traits",
  "light-verifier",
  "num-bigint 0.4.4",
  "num-traits",

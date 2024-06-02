@@ -4,6 +4,7 @@ use syn::{parse_macro_input, parse_quote, ItemFn, ItemStruct};
 
 mod expand;
 
+
 /// Converts a base58 encoded public key into a byte array.
 #[proc_macro]
 pub fn pubkey(input: TokenStream) -> TokenStream {
