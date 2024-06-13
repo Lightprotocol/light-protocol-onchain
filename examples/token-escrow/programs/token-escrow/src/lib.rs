@@ -155,16 +155,30 @@ fn create_change_output_compressed_token_account(
     let input_sum = input_token_data_with_context
         .iter()
         .map(|account| account.amount)
-        .sum::<u64>();
+        .try_fold(0u64, |acc, x| acc.checked_add(x))
+        .expect("Overflow occurred during summation.");
+    
     let output_sum = output_compressed_accounts
         .iter()
         .map(|account| account.amount)
-        .sum::<u64>();
-    let change_amount = input_sum - output_sum;
+        .try_fold(0u64, |acc, x| acc.checked_add(x))
+        .expect("Overflow occurred during summation.");
+    
+    let change_amount = input_sum.checked_sub(output_sum)
+        .expect("Underflow occurred during subtraction.");
+    
     PackedTokenTransferOutputData {
         amount: change_amount,
         owner: *owner,
         lamports: None,
         merkle_tree_index,
     }
+}
+
+#[error_code]
+pub enum ErrorCode {
+    #[msg("Overflow occurred during summation.")]
+    Overflow,
+    #[msg("Underflow occurred during subtraction.")]
+    Underflow,
 }
