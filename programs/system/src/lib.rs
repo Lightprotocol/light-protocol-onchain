@@ -1,5 +1,4 @@
 use anchor_lang::{prelude::*, solana_program::pubkey::Pubkey};
-
 pub mod invoke;
 pub use invoke::instruction::*;
 pub mod invoke_cpi;
@@ -68,16 +67,4 @@ pub mod light_system_program {
         process_invoke_cpi(ctx, inputs)
     }
 
-    /// This function is a stub to allow Anchor to include the input types in
-    /// the IDL. It should not be included in production builds nor be called in
-    /// practice.
-    #[cfg(feature = "idl-build")]
-    pub fn stub_idl_build<'info>(
-        _ctx: Context<'_, '_, '_, 'info, InvokeInstruction<'info>>,
-        _inputs1: InstructionDataInvoke,
-        _inputs2: InstructionDataInvokeCpi,
-        _inputs3: PublicTransactionEvent,
-    ) -> Result<()> {
-        Err(SystemProgramError::InstructionNotCallable.into())
-    }
 }
